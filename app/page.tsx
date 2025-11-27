@@ -14,7 +14,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleType = () => {
-
       const updatedText = isDeleting
         ? fullText.slice(0, typedText.length - 1)
         : fullText.slice(0, typedText.length + 1);
@@ -106,10 +105,11 @@ export default function Home() {
         </div>
       </MotionWrapper>
 
+
       {/* Countdown */}
       <MotionWrapper delay={0.5}>
         <div className="relative z-20 mb-8 text-white">
-          <Countdown weddingDate="2025-12-25T15:00:00" />
+          <Countdown weddingDate="2025-12-13T15:00:00" />
         </div>
       </MotionWrapper>
 
