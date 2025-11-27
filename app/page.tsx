@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleType = () => {
-      const current = loopNum % fullText.length;
+
       const updatedText = isDeleting
         ? fullText.slice(0, typedText.length - 1)
         : fullText.slice(0, typedText.length + 1);
@@ -38,13 +38,13 @@ export default function Home() {
       {/* Background */}
       <div className="absolute inset-0 -z-20">
         <Image
-          src="https://cdn.pixabay.com/photo/2016/03/14/14/21/bride-1255520_640.jpg"
+          src="/bgg.jpg"
           alt="Wedding Background"
           fill
           priority
           className="object-cover brightness-[0.45]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent" />
       </div>
 
       {/* Floating Flowers */}
@@ -72,7 +72,7 @@ export default function Home() {
       >
         <h1
           className="text-5xl sm:text-7xl font-[Playfair_Display] mb-4 tracking-wide 
-          text-transparent bg-clip-text bg-gradient-to-r from-[#fff8c5] via-[#FFD700] to-[#d4af37]
+          text-transparent bg-clip-text bg-linear-to-r from-[#fff8c5] via-[#FFD700] to-[#d4af37]
           drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] flex justify-center items-center"
           style={{
             textShadow:
@@ -96,12 +96,12 @@ export default function Home() {
 
       {/* Couple Image */}
       <MotionWrapper delay={0.3}>
-        <div className="relative z-20 w-56 h-56 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-[2rem] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.4)] border-[6px] sm:border-[8px] border-[#d4af37]/60 bg-white/10 backdrop-blur-md mb-10">
+        <div className="relative z-20 w-56 h-56 sm:w-80 sm:h-80  rounded-4xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.4)] border-[6px] sm:border-8 border-[#d4af37]/60 bg-white/10 backdrop-blur-md mb-10">
           <Image
-            src="https://cdn.pixabay.com/photo/2016/03/14/14/21/bride-1255520_640.jpg"
+            src="/couple.jpg"
             alt="Couple"
             fill
-            className="object-cover"
+            className="object-contain object-center"
           />
         </div>
       </MotionWrapper>
@@ -118,9 +118,9 @@ export default function Home() {
         <div className="relative z-30 mb-10">
           <a
             href="/rsvp"
-            className="inline-block bg-gradient-to-r from-[#d4af37] to-[#b8962e] 
+            className="inline-block bg-linear-to-r from-[#d4af37] to-[#b8962e] 
             text-black font-semibold px-10 sm:px-14 py-3 sm:py-4 rounded-full shadow-lg 
-            hover:shadow-xl hover:scale-105 hover:bg-gradient-to-r hover:from-[#fff8c5] hover:to-[#f5d76e] 
+            hover:shadow-xl hover:scale-105 hover:bg-linear-to-r hover:from-[#fff8c5] hover:to-[#f5d76e] 
             hover:text-black focus:text-black active:text-black transition-all duration-300"
           >
             RSVP Now

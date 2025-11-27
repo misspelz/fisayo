@@ -42,8 +42,7 @@ export default function Header() {
   };
 
   return (
-   <header className="sticky top-0 z-50 bg-white/100 border-b border-[#e0d4b3]/60 shadow-sm">
-
+    <header className="sticky top-0 z-50 bg-white/100 border-b border-[#e0d4b3]/60 shadow-sm">
       <nav className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4">
         {/* Logo with typewriter effect */}
         <motion.h1
@@ -78,7 +77,7 @@ export default function Header() {
                 href={link.href}
                 className={`transition-all duration-300 ${
                   pathname === link.href
-                    ? "text-[#1b3d2f] font-semibold"
+                    ? "text-bg-[var(--background)] font-semibold"
                     : "hover:text-[#d4af37]"
                 }`}
               >
@@ -131,7 +130,11 @@ export default function Header() {
                 exit="hidden"
               >
                 {links.map((link, i) => (
-                  <motion.div key={link.href} custom={i} variants={linkVariants}>
+                  <motion.div
+                    key={link.href}
+                    custom={i}
+                    variants={linkVariants}
+                  >
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}

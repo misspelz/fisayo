@@ -7,23 +7,38 @@ export default function RsvpForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    attendance: "Attending in person",
-    message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Thank you, ${formData.name}! Your RSVP has been submitted.`);
-    setFormData({
-      name: "",
-      email: "",
-      attendance: "Attending in person",
-      message: "",
-    });
+
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyW3p1mu6-jXC43zutrGK5p6a-AIICrURD9K4paCZfKQkvCDt8C0T-K-m9bmz40oz82XA/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      alert(`Thank you, ${formData.name}! You are added.`);
+      setFormData({ name: "", email: "" });
+    } catch (error) {
+      console.log("error", error);
+      console.error("Something went wrong.");
+    }
   };
 
   return (
@@ -40,41 +55,26 @@ export default function RsvpForm() {
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Your Name"
+        placeholder="Your name"
         required
-         className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-(--primary)"
+        className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-(--primary)"
       />
+
       <input
         type="email"
         name="email"
         value={formData.email}
         onChange={handleChange}
-        placeholder="Your Email"
+        placeholder="Your email address"
         required
-         className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-(--primary)"
-      />
-      <select
-        name="attendance"
-        value={formData.attendance}
-        onChange={handleChange}
-        className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-(--primary)"
-      >
-        <option>Attending in person</option>
-        <option>Attending online</option>
-        <option>Not attending</option>
-      </select>
-      <textarea
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="Your message (optional)"
         className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-(--primary)"
       />
+
       <button
         type="submit"
-        className="bg-(--primary) text-white font-semibold py-2 px-4 rounded-md hover:bg-(--accent) transition-colors"
+        className="bg-(--primary) text-white font-semibold py-2 px-4 rounded-md cursor-pointer"
       >
-        Submit RSVP
+        Submit
       </button>
     </motion.form>
   );
